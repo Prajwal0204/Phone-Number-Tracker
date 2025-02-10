@@ -86,10 +86,14 @@ def display_information(number):
 
 # Function to load number from history listbox
 def load_from_history(event):
-    selected_number = history_listbox.get(history_listbox.curselection())
-    entry.set(selected_number)
-    number = phonenumbers.parse(selected_number)
-    display_information(number)
+    # Check if an item is selected
+    if history_listbox.curselection():
+        selected_number = history_listbox.get(history_listbox.curselection())
+        entry.set(selected_number)
+        number = phonenumbers.parse(selected_number)
+        display_information(number)
+    else:
+        messagebox.showerror("Selection Error", "No phone number selected from history.")
 
 # Function to clear history listbox
 def clear_history():
